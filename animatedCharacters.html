@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rating Animated Characters</title>
+    <style>
+        h1{
+            text-align: center;
+            color: lightcoral;
+        }
+        label{
+            display:inline-block;
+            width:220px;
+            margin-right:10px;
+            text-align:right;
+            font-size: 25px;
+            font-weight: bold;
+            color: lightcoral;
+        }
+        #tb1,#tb2{
+            font-size: 15px;
+            width:250px;
+        }
+        #btn{
+            margin-left:30px;
+            font-size: 20px;
+            font-weight: bold;
+            color:white;
+            background-color: lightcoral;
+            border-radius: 20px;
+            opacity: 0.5;
+        }
+        table{
+            width:100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 20px;
+        }
+        th {
+            color: white;
+            opacity: 0.5;
+            background-color: lightcoral;
+          }
+        tr:nth-child(even) {
+            
+              background-color: #f2f2f2;
+            }
+        img{
+            margin-left: 50px;
+        }
+        #del{
+            width: 200px;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            color:white;
+            background-color: #FF3333;
+            border-radius: 20px;
+            border:none;
+        }
+        tr{
+            height: 50px;
+        }
+        #msg{
+            color: #FF3333;
+            margin-top: 10px;
+            margin-left: 715px;
+        }
+    </style>
+</head>
+<body >
+    <h1>Animated Characters</h1>
+    <br>
+    <label for="cname">Character Name:</label><input type="text" name="cname" id="tb1">
+    <label for="rate">Rating:</label><input type="text" name="rate" id="tb2" placeholder="Enter a number between 1 to 10">
+    <input type="Submit" name="char" id="btn" value="Add Character" onclick="add()">
+    <div id="msg"></div>
+    <br>
+    <img src="baymax.png" height="150px" width="150px">
+    <img src="mw.png" height="150px" width="120px">
+    <img src="pooh.png" height="150px" width="200px">
+    <img src="goofy.png" height="150px" width="120px">
+    <img src="dory.png" height="150px" width="150px">
+    <img src="mm.png" height="150px" width="100px">
+    <table id="tab" border="1">
+        <tr>
+            <th>Charater Name</th>
+            <th>Rating</th>
+            <th>Delete Character</th>
+        </tr>
+    </table>
+<script>
+    function add() {
+            var rate = document.getElementById("tb2").value;  
+            var num = /^[0-9]+$/;
+            if (!num.test(rate)) {
+                document.getElementById('msg').innerHTML = "Enter numeric values only for rating";
+                return false;
+            }
+            else{
+                var a = document.getElementById("tab").insertRow();
+                var b = a.insertCell();
+                var c = a.insertCell();
+                var d = a.insertCell();
+                b.innerHTML = document.getElementById("tb1").value;
+                c.innerHTML = document.getElementById("tb2").value;
+                d.innerHTML = '<input type="submit" value="Delete" id="del" onclick="delrow(this)">';
+                document.getElementById("tb1").value="";
+                document.getElementById("tb2").value="";
+            }
+    }       
+    function delrow(r){
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("tab").deleteRow(i);
+    }
+</script>
+</body>
+</html>
